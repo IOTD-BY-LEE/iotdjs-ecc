@@ -8,15 +8,15 @@ Private Key, Public Key, Signature, AES, Encryption / Decryption
 # Import
 
 ```js
-import ecc from 'vktjs-ecc'
+import ecc from 'iotdjs-ecc'
 // or
-const ecc = require('vktjs-ecc')
+const ecc = require('iotdjs-ecc')
 ```
 
 # Include
 
--   Install with: `npm install vktjs-ecc`
--   Html script tag, see [releases](https://github.com/vankiaio/vktjs-ecc/releases) for the correct **version** and its matching script **integrity** hash.
+-   Install with: `npm install iotdjs-ecc`
+-   Html script tag, see [releases](https://github.com/IOTD-BY-VKT/iotdjs-ecc/releases) for the correct **version** and its matching script **integrity** hash.
 
 ```html
 <html>
@@ -33,7 +33,7 @@ const ecc = require('vktjs-ecc')
 
 </head>
 <body>
-  See console object: vktjs_ecc
+  See console object: iotdjs_ecc
 </body>
 </html>
 ```
@@ -44,42 +44,49 @@ const ecc = require('vktjs-ecc')
 
 ### Table of Contents
 
--   [wif](#wif)
--   [ecc](#ecc)
-    -   [initialize](#initialize)
-    -   [unsafeRandomKey](#unsaferandomkey)
-    -   [randomKey](#randomkey)
-        -   [Parameters](#parameters)
-        -   [Examples](#examples)
-    -   [seedPrivate](#seedprivate)
-        -   [Parameters](#parameters-1)
-        -   [Examples](#examples-1)
-    -   [privateToPublic](#privatetopublic)
-        -   [Parameters](#parameters-2)
-        -   [Examples](#examples-2)
-    -   [isValidPublic](#isvalidpublic)
-        -   [Parameters](#parameters-3)
-        -   [Examples](#examples-3)
-    -   [isValidPrivate](#isvalidprivate)
-        -   [Parameters](#parameters-4)
-        -   [Examples](#examples-4)
-    -   [sign](#sign)
-        -   [Parameters](#parameters-5)
-        -   [Examples](#examples-5)
-    -   [signHash](#signhash)
-        -   [Parameters](#parameters-6)
-    -   [verify](#verify)
-        -   [Parameters](#parameters-7)
-        -   [Examples](#examples-6)
-    -   [recover](#recover)
-        -   [Parameters](#parameters-8)
-        -   [Examples](#examples-7)
-    -   [recoverHash](#recoverhash)
-        -   [Parameters](#parameters-9)
-    -   [sha256](#sha256)
-        -   [Parameters](#parameters-10)
-        -   [Examples](#examples-8)
--   [pubkey](#pubkey)
+- [Elliptic curve cryptography functions (ECC)](#elliptic-curve-cryptography-functions-ecc)
+- [Import](#import)
+- [Include](#include)
+- [Common API](#common-api)
+    - [Table of Contents](#table-of-contents)
+  - [wif](#wif)
+  - [ecc](#ecc)
+    - [initialize](#initialize)
+    - [unsafeRandomKey](#unsaferandomkey)
+    - [randomKey](#randomkey)
+      - [Parameters](#parameters)
+      - [Examples](#examples)
+    - [seedPrivate](#seedprivate)
+      - [Parameters](#parameters-1)
+      - [Examples](#examples-1)
+    - [privateToPublic](#privatetopublic)
+      - [Parameters](#parameters-2)
+      - [Examples](#examples-2)
+    - [isValidPublic](#isvalidpublic)
+      - [Parameters](#parameters-3)
+      - [Examples](#examples-3)
+    - [isValidPrivate](#isvalidprivate)
+      - [Parameters](#parameters-4)
+      - [Examples](#examples-4)
+    - [sign](#sign)
+      - [Parameters](#parameters-5)
+      - [Examples](#examples-5)
+    - [signHash](#signhash)
+      - [Parameters](#parameters-6)
+    - [verify](#verify)
+      - [Parameters](#parameters-7)
+      - [Examples](#examples-6)
+    - [recover](#recover)
+      - [Parameters](#parameters-8)
+      - [Examples](#examples-7)
+    - [recoverHash](#recoverhash)
+      - [Parameters](#parameters-9)
+    - [sha256](#sha256)
+      - [Parameters](#parameters-10)
+      - [Examples](#examples-8)
+  - [pubkey](#pubkey)
+- [Usage (Object API)](#usage-object-api)
+- [Browser](#browser)
 
 ## wif
 
@@ -118,7 +125,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 ```javascript
 ecc.randomKey().then(privateKey => {
 console.log('Private Key:\t', privateKey) // wif
-console.log('Public Key:\t', ecc.privateToPublic(privateKey)) // VKTkey...
+console.log('Public Key:\t', ecc.privateToPublic(privateKey)) // IOTDkey...
 })
 ```
 
@@ -145,7 +152,7 @@ Returns **[wif](#wif)**
 #### Parameters
 
 -   `wif` **[wif](#wif)**
--   `pubkey_prefix` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** public key prefix (optional, default `'VKT'`)
+-   `pubkey_prefix` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** public key prefix (optional, default `'IOTD'`)
 
 #### Examples
 
@@ -159,8 +166,8 @@ Returns **[pubkey](#pubkey)**
 
 #### Parameters
 
--   `pubkey` **[pubkey](#pubkey)** like VKTKey..
--   `pubkey_prefix` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `'VKT'`)
+-   `pubkey` **[pubkey](#pubkey)** like IOTDKey..
+-   `pubkey_prefix` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)**  (optional, default `'IOTD'`)
 
 #### Examples
 
@@ -238,7 +245,7 @@ Recover the public key used to create the signature.
 
 #### Parameters
 
--   `signature` **([String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** (VKTbase58sig.., Hex, Buffer)
+-   `signature` **([String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** (IOTDbase58sig.., Hex, Buffer)
 -   `data` **([String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** full data
 -   `encoding` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** data encoding (if data is a string) (optional, default `'utf8'`)
 
@@ -254,7 +261,7 @@ Returns **[pubkey](#pubkey)**
 
 #### Parameters
 
--   `signature` **([String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** (VKTbase58sig.., Hex, Buffer)
+-   `signature` **([String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** (IOTDbase58sig.., Hex, Buffer)
 -   `dataSha256` **([String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String) \| [Buffer](https://nodejs.org/api/buffer.html))** sha256 hash 32 byte buffer or hex string
 -   `encoding` **[String](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** dataSha256 encoding (if dataSha256 is a string) (optional, default `'hex'`)
 
@@ -282,14 +289,14 @@ Returns **([string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 ## pubkey
 
-VKTKey..
+IOTDKey..
 
 Type: [string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)
 
 # Usage (Object API)
 
 ```js
-let {PrivateKey, PublicKey, Signature, Aes, key_utils, config} = require('vktjs-ecc')
+let {PrivateKey, PublicKey, Signature, Aes, key_utils, config} = require('iotdjs-ecc')
 
 // Create a new random private key
 let privateWif
@@ -309,8 +316,8 @@ pubkey = PrivateKey.fromString(privateWif).toPublic().toString()
 # Browser
 
 ```bash
-git clone https://github.com/vankiaio/vktjs-ecc.git
-cd vktjs-ecc
+git clone https://github.com/IOTD-BY-VKT/iotdjs-ecc.git
+cd iotdjs-ecc
 npm install
 npm run build_browser
 # builds: ./dist/eosjs-ecc.js
